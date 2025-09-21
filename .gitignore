@@ -1,0 +1,36 @@
+node_modules
+www/assets
+# Composer závislosti
+/vendor/
+
+# Dočasné soubory a cache
+/temp/
+/log/
+
+# Lokální konfigurace (obsahuje hesla, DB přístupy apod.)
+/app/config/local.neon
+/app/config/local.neon.php
+
+# Lokální konfigurace pro inspiraci (můžeš commitnout s prázdnými hodnotami)
+/app/config/local.neon.example
+
+# Web server generované soubory (pokud máš např. uploads nebo assets mimo GIT)
+/www/temp/
+/www/uploads/
+/www/assets/cache/
+
+# IDE a editor
+/.idea/
+/.vscode/
+/nbproject/
+*.iml
+
+# OS soubory
+.DS_Store
+Thumbs.db
+
+# Dočasné a zálohovací soubory
+*.bak
+*.swp
+*.swo
+*.tmp

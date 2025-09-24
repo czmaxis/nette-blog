@@ -24,13 +24,38 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 
 	return $form;
 }
-private function postFormSucceeded(\stdClass $data): void
+private function postFormSucceeded(array $data): void
 {
-    $post = $this->database
-    ->table('posts')
-    ->insert($data);
+	$id = $this->getParameter('id');
 
-    $this->flashMessage('Příspěvek byl uložen a publikován', 'success');
-    $this->redirect('Post:show', $post->id);
+	if ($id) {
+		$post = $this->database
+			->table('posts')
+			->get($id);
+		$post->update($data);
+
+	} else {
+		$post = $this->database
+			->table('posts')
+			->insert($data);
+	}
+
+	$this->flashMessage('Příspěvek byl úspěšně publikován.', 'success');
+	$this->redirect('Post:show', $post->id);
 }
+
+public function renderEdit(int $id): void
+{
+	$post = $this->database
+		->table('posts')
+		->get($id);
+
+	if (!$post) {
+		$this->error('Post not found');
+	}
+
+	$this->getComponent('postForm')
+		->setDefaults($post->toArray());
+}
+
 }

@@ -9,7 +9,8 @@
 <div class="post">{$post->content}</div>
 
 
-<a n:href="Edit:edit $post->id">Upravit příspěvek</a>
+{if $user->isLoggedIn()}<a n:href="Edit:create">Vytvořit příspěvek</a>{/if}
+
 
 
 {control commentForm}
